@@ -1,6 +1,6 @@
 # custom-select-menu-facet
 
-Replace AppId, searchApi key and index name in `results-page.js`
+Replace AppId, searchApi key and index name in `components/results-page.js`
 
 Run `npm run install` to install dependencies
 
