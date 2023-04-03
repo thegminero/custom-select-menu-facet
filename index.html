@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+
+  <!-- <link rel="shortcut icon" href="./favicon.png"> -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
+  <link rel="stylesheet" href="./src/index.css">
+  <link rel ="stylesheet" href="./src/app.css">
+
+  <title>algolia-custom-dropdown-facet</title>
+  <script>
+    var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@2.0.3";
+    !function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
+    (e[s].queue=e[s].queue||[]).push(arguments)},i=a.createElement(t),c=a.getElementsByTagName(t)[0],
+    i.async=1,i.src=n,c.parentNode.insertBefore(i,c)
+    }(window,document,"script",ALGOLIA_INSIGHTS_SRC,"aa");
+  </script>
+  
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__container">
+      <div class="header__logo-container">
+      </div>
+      <div class="header__searchbox-container">
+        <div class="header__searchbox" id="searchbox"></div>
+        <div class="autocomplete">
+          <div class="autocomplete_container">
+            <div class="autocomplete__hits" id="autocomplete-hits">
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="cart" id="cart">
+        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.75 5.25H6L6.34615 8.25M6.34615 8.25L7.5 15.75H17.25L18.75 8.25H6.34615Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 18.75L9.00788 18.75" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 18.75L15.0079 18.75" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span id="cart-badge" class="badge">0</span>
+      </a>
+      <div class="cart-container hidden" id="cart-container">
+        <h4>Cart
+          <span class="price" style="color:black">
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.75 5.25H6L6.34615 8.25M6.34615 8.25L7.5 15.75H17.25L18.75 8.25H6.34615Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 18.75L9.00788 18.75" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 18.75L15.0079 18.75" stroke="black" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            
+          </span>
+          <b class="cart-total" id="cart-total">0</b>
+        </h4>
+        <div class="cart-items" id="cart-items">
+        </div>
+        <hr>
+        <p>Total <span class="price" style="color:black"><b>$</b><b id="final-total">0</b></span></p>
+        <div class="checkout-options">
+          <button class="order-now" id="order-cart">
+            $ Order</button>
+            <button class="emplty-cart" id="emplty-cart">
+            Empty Cart</button>
+        </div>
+      </div>
+      <div>
+        
+      </div>
+    </div>
+    </div>
+    
+  </header>
+
+  <div class="results">
+    <div class="results__container">
+      <div class="facet-panel">
+        <div class="facet-panel__container">
+          <h2>Make</h2>
+          <div class="ais-custom-facet-dropdown" id="custom-facet-dropdown-make"></div>
+        </div>
+        <div class="facet-panel__container">
+          <h2>Model</h2>
+          <div class="ais-custom-facet-dropdown" id="custom-facet-dropdown-model"></div>
+        </div>
+        <div class="facet-panel__container">
+          <h2>Year</h2>
+          <div class="ais-custom-facet-dropdown" id="custom-facet-dropdown-year"></div>
+        </div>
+      </div>
+      <div class="search-panel">
+        <div class="search-panel__results">
+          <div id="hits"></div>
+        </div>
+        <div id="pagination"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="product-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 id="mod-product-name"></h2>
+        </div>
+        <div class="modal-body">
+          <img src="https://cdn-demo.algolia.com/bestbuy/9999119_sb.jpg" id="prod-image" alt="demo" ></img>
+          
+          <h3 id="prod-desc"></h3>
+        </div>
+        <div class="modal-footer">
+          <p>price: <span id="prod-price"> </span></p>
+          <button type="button" id="add-to-cart" class="add-to-cart" data-product-id="">
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.75 5.25H6L6.34615 8.25M6.34615 8.25L7.5 15.75H17.25L18.75 8.25H6.34615Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 18.75L9.00788 18.75" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 18.75L15.0079 18.75" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Add To Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./src/app.js" type="module"></script>
+
+  <script type="text/javascript"> 
+    window.onload = () => {
+      sessionStorage.setItem('AlgoliaProductsCart', '{}');
+      addToCartListeners();
+      updateCart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      sessionStorage.setItem('AlgoliaCategory', window.location.pathname)
+  });
+
+    function addToCartListeners(){
+      const cartBtn = document.getElementById('cart');
+      cartBtn.addEventListener('click', cartClick);
+      const cartEmpty = document.getElementById('emplty-cart');
+      cartEmpty.addEventListener("click", emptyCart);
+    }
+  
+    function updateCart(){
+      const cart = JSON.parse(sessionStorage.getItem('ElectronicProductsCart'))
+      const cartItems = Object.keys(cart).length;
+      document.getElementById('cart-badge').innerHTML = cartItems
+      document.getElementById('cart-total').innerHTML = cartItems
+    }
+  
+    function cartClick(){
+      const cartBtn = document.getElementById('cart-container');
+      let totalPrice = 0;
+      cartBtn.classList.toggle('hidden');
+      if(!cartBtn.classList.contains('hidden')){
+        const cart = JSON.parse(sessionStorage.getItem('ElectronicProductsCart'))
+        const cartItems = Object.keys(cart).length;
+        const allCartItems = document.getElementById('cart-items')
+        while (allCartItems.lastChild) {
+          allCartItems.removeChild(allCartItems.lastChild);
+        }
+        for (const item in cart) {
+          const newCartItem = createCartItem(cart[item])
+          allCartItems.append(newCartItem)
+          totalPrice += parseFloat(cart[item].price)
+        }
+        document.getElementById('final-total').innerText = totalPrice
+      }
+    }
+  
+    function createCartItem(cartItem) {
+      const pItem = document.createElement("p");
+      const item = document.createElement("a");
+      item.href="#"
+      item.innerText = cartItem.name
+      const price = document.createElement("span");
+      price.classList.add('price')
+      price.innerText = cartItem.price
+      pItem.append(item, price)
+      return pItem
+    }
+  
+    function emptyCart(){
+      sessionStorage.setItem('ElectronicProductsCart', '{}')
+      window.location.reload()
+    }
+    </script>
+</body>
+</html>

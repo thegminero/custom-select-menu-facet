@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Instant Search */
+  .ais-Hits-list {
+    display: flex;
+    width: 100%;
+  }
+  
+  .ais-Hits-item {
+    display: flex;
+    width: 100%;
+    box-shadow: none;
+    border: 0;
+  }
+  
+  /* Header */
+  .header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    background: #252321;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+  }
+  
+  .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 50px;
+    max-width: 1200px;
+  }
+  
+  .header__logo-container {
+    min-width: 150px;
+  }
+  
+  .header__logo svg {
+    fill: white;
+  }
+  
+  .header__searchbox-container {
+    height: 32px;
+    flex-grow: 1;
+    margin-left: 5%;
+  }
+  
+  .header__searchbox input {
+    border-radius: 2px;
+    background-color: #fff;
+    padding: 8px 26px;
+  }
+  
+  .header__searchbox input:focus {
+    outline: none;
+    border: 1px solid #252321;
+    border-bottom: 0;
+    border-radius: 2px 2px 0 0;
+  }
+  
+  /*Results*/
+  .results {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 150px 1rem 0;
+  }
+  
+  .results__container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  /* Facets */
+  .facet-panel {
+    flex: 1;
+  }
+  
+  /* Hits */
+  .search-panel {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .search-panel__results li {
+    justify-content: space-between;
+  }
+  
+  .search-panel__results li {
+    width: 255px;
+    max-height: 430px;
+  }
+  
+  .ais-Highlight-highlighted {
+    color: inherit;
+    font-size: inherit;
+  }
+  
+  .ais-RefinementList-list {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    padding: 1em;
+    border-radius: 10px;
+  }
+  
+  .result-hit__image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+  }
+  .result-hit__image{
+    flex-shrink: 0;
+    min-width: 25%;
+    min-height: 25%
+  }
+  .result-hit{
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    margin: 1em;
+    border: 2px solid #252321;
+    border-radius: 5px;
+  }
+  .result-hit:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  .result-hit__prices{
+    display: flex;
+    justify-content: space-around;
+  }
+  .result-hit__original{
+    font-size: 22px;
+    color: red;
+    text-decoration: line-through;
+  }
+  .result-hit__price{
+    color: grey;
+    font-size: 22px;
+  }
+  .result-hit__controls{
+    bottom: 0;
+  }
+  
+  .result-hit__controls > .result-hit__cart, .add-to-cart {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  .result-hit__controls > .result-hit__view {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: gray;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  button {
+    display: flex;
+    align-items: center;
+  }
+  .result-hit__controls button:hover, .add-to-cart:hover {
+    opacity: 0.7;
+  }
+  
+  #searchbox {
+    margin-bottom: 2rem;
+  }
+  
+  #pagination {
+    margin: 2rem auto;
+    text-align: center;
+  }
+  
+  /*cart checkout*/
+  .cart-container {
+      border-radius: 5px;
+      padding: 0 0 0 .5em;
+      background-color: white;
+      width: 450px;
+      position:absolute; 
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      right:0; 
+      margin-right: 13%; 
+      margin-top: 28em;
+    }
+  .cart-container > h4 {
+      display: flex;
+      flex-flow: row;
+      align-content: center;
+  }
+  
+  .hidden{
+    visibility: hidden;
+  }
+  span.price {
+    float: right;
+    color: grey;
+  }
+  .checkout-options{
+    display: flex;
+    flex-direction: column;
+  }
+  .checkout-options > button {
+    margin-top: 5px;;
+    border-radius: 5px;
+    border: none;
+    outline: 0;
+    padding: 10px;
+    color: white;
+    background-color: gray;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+  }
+  .checkout-options > button:hover{
+    background-color: black;
+  }
