@@ -1,6 +1,15 @@
 # custom-select-menu-facet
 
-Replace AppId, searchApi key and index name in `components/results-page.js`
+##Pre-deployment considerations
+
+- Replace AppId, searchApi key and index name in `components/results-page.js`
+
+- Replace the attribute names you want to display options for in index.html as well as tab headers and so on.
+
+- Replace hit properties in the `templates/result-hit.js`
+
+
+## Run the App
 
 Run `npm run install` to install dependencies
 
