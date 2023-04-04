@@ -1,3 +1,7 @@
 # custom-select-menu-facet
 
-Custom Facets with dynamicWidgets leveraging custom facets as well
+Replace AppId, searchApi key and index name in `components/results-page.js`
+
+Run `npm run install` to install dependencies
+
+Run `npm run start` to view how the custom facet dropdown works.
