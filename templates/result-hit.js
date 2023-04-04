@@ -5,7 +5,7 @@ const resultHit = (hit, bindEvent) => `<a class="result-hit">
     <img class="result-hit__image" src="${hit.photos.split('|')[0]}" />
   </div>
   <div class="result-hit__details">
-    <h3 class="result-hit__name">${hit._highlightResult.model}</h3>
+    <h3 class="result-hit__name">${hit.make} ${hit.model} ${hit.year}</h3>
     <div class="result-hit__prices">
     <p class="result-hit__price">$${hit.price}</p>
     </div>

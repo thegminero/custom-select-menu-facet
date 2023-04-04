@@ -78,20 +78,19 @@
   <div class="results">
     <div class="results__container">
       <div class="facet-panel">
+        <!-- Static Custom Facets-->
         <div class="facet-panel__container">
-          <h2>Make</h2>
-          <div class="ais-custom-facet-dropdown" id="custom-facet-dropdown-make"></div>
-        </div>
-        <div class="facet-panel__container">
-          <h2>Model</h2>
           <div class="ais-custom-facet-dropdown" id="custom-facet-dropdown-model"></div>
         </div>
+
+       <!-- Dynamic Widget Facets-->
         <div class="facet-panel__container">
-          <h2>Year</h2>
-          <div class="ais-custom-facet-dropdown" id="custom-facet-dropdown-year"></div>
+          <h2>Dynamic Widgets here</h2>
+          <div class="ais-dynamic-widgets" id="dynamic-widgets"></div>
         </div>
       </div>
       <div class="search-panel">
+        
         <div class="search-panel__results">
           <div id="hits"></div>
         </div>
@@ -190,6 +189,7 @@
       sessionStorage.setItem('ElectronicProductsCart', '{}')
       window.location.reload()
     }
+    
     </script>
 </body>
 </html>

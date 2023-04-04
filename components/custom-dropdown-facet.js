@@ -3,24 +3,19 @@ import { connectRefinementList } from 'instantsearch.js/es/connectors';
 const renderRefinementList = (renderOptions, isFirstRender) => {
     const {
       items,
-      isFromSearch,
       refine,
-      createURL,
-      isShowingMore,
-      canToggleShowMore,
-      searchForItems,
-      toggleShowMore,
       widgetParams,
     } = renderOptions;
-  
     if (isFirstRender) {
+      const header = document.createElement('h2');
+      header.innerText = widgetParams.title
       const select = document.createElement('select');
       select.classList.add('ais-custom-facet-dropdown');
 
       select.addEventListener('change', (event) => {
           refine(event.target.value);
         });
-  
+      widgetParams.container.appendChild(header);
       widgetParams.container.appendChild(select);
 
     }
@@ -51,7 +46,5 @@ const renderRefinementList = (renderOptions, isFirstRender) => {
   const customFacetDropdown = connectRefinementList(
     renderRefinementList
   );
-
-    
 
   export default customFacetDropdown;

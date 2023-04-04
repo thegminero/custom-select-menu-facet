@@ -5,6 +5,8 @@ import {
   searchBox,
   configure,
   hits,
+  panel,
+  menu,
   pagination,
   refinementList,
   dynamicWidgets,
@@ -34,7 +36,7 @@ class ResultsPage {
    */
   _registerClient() {
      //Ideally, fetch Search Token from server, do not expose API key on client side code
-      this._searchClient = algoliasearch('APPID', 'APIKEY/SearchTOKEN');
+      this._searchClient = algoliasearch('AppId', 'SearchApiKey');
       this._searchInstance = instantsearch({
         indexName: 'IndexName',
         searchClient: this._searchClient,
@@ -55,8 +57,8 @@ class ResultsPage {
     if (this._searchInstance) {
       this._searchInstance.addWidgets([
         configure({
-            analyticsTags: [currentCategory, 'location', 'anonymous', 'aparato', 'autocomplete'],
-            ruleContexts: [currentCategory, 'location', 'anonymous', 'aparato', 'global-search']
+            analyticsTags: [currentCategory, 'location', 'anonymous'],
+            ruleContexts: [currentCategory, 'location', 'anonymous']
         }),
         searchBox({
           container: '#searchbox',
@@ -71,21 +73,21 @@ class ResultsPage {
           container: '#pagination',
         }),
         customFacetDropdown({
-          container: document.querySelector('#custom-facet-dropdown-make'),
-          attribute: 'make',
-          title: 'Select a make',
-        }),
-        customFacetDropdown({
           container: document.querySelector('#custom-facet-dropdown-model'),
           attribute: 'model',
           title: 'Select a model',
         }),
-        customFacetDropdown({
-          container: document.querySelector('#custom-facet-dropdown-year'),
-          attribute: 'year',
-          title: 'Select a year',
+        dynamicWidgets({
+          container: '#dynamic-widgets',
+          widgets: [
+            container => customFacetDropdown({ container, attribute: 'year', title: 'Select a year' }),
+          ],
+          fallbackWidget: ({ container, attribute }) =>
+            panel({ templates: { header: attribute } })(
+              menu
+            )({ container, attribute }),
         })
-      ]);
+      ])
     }
   }
   // eslint-disable-next-line jsdoc/require-description
